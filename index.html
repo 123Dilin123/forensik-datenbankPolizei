@@ -15,7 +15,6 @@
             --border-color: #cbd5e0;
             --input-bg: #edf2f7;
         }
-        
 
         * {
             box-sizing: border-box;
@@ -336,7 +335,6 @@
             <div class="security-badge">NUR FÜR DIENSTSTELLE // STRENG GEHEIM</div>
         </div>
 
-        <!-- Login Screen -->
         <div class="screen active" id="login-screen">
             <div class="login-box">
                 <div class="login-header-text">System-Authentifizierung</div>
@@ -345,14 +343,13 @@
                     Der Zugriff ist nur autorisiertem Personal gestattet.
                 </p>
                 <div class="input-group">
-                    <input type="password" id="password-field" class="terminal-input" placeholder="Datum_Fall" autofocus>
+                    <input type="password" id="password-field" class="terminal-input" placeholder="Geben Sie den Autorisierungscode ein..." autofocus>
                 </div>
                 <button class="terminal-button" onclick="tryLogin()">System entsperren</button>
                 <div class="error-message" id="login-error">ZUGRIFF VERWEIGERT: Ungültige Dienstkennung / Passwort.</div>
             </div>
         </div>
 
-        <!-- Haupt-Ermittlungsterminal -->
         <div class="screen main-screen" id="main-screen">
             <div class="metadata-panel">
                 <div class="metadata-grid">
@@ -368,14 +365,14 @@
             </div>
 
             <div class="search-container">
-                <input type="text" id="search-field" class="terminal-input search-input" placeholder="Suchbegriff oder Aktennummer eingeben">
+                <input type="text" id="search-field" class="terminal-input search-input" placeholder="Suchbegriff oder Aktennummer eingeben (z.B. Leiche, Uhr, Notiz)...">
                 <button class="terminal-button search-btn" onclick="executeSearch()">Daten abrufen</button>
             </div>
 
             <div class="output-panel" id="output-panel">
                 <div class="output-placeholder">
                     System bereit für Abfrage.<br>
-                    Nutzen Sie Schlagworte, Kennungen oder Spurentypen.
+                    Nutzen Sie Schlagworte, Kennungen oder Spurentypen (z.B. „Leiche“, „Uhr“ oder „Asservat 1“).
                 </div>
             </div>
         </div>
@@ -389,11 +386,10 @@
     <script>
         const GLOBAL_PASSWORD = "18.05.2026_Waldvilla";
 
-        // NEUE STRUKTUR: Jeder Eintrag listet direkt seine Aliase/Keywords auf
         const forensicDatabase = [
             {
                 thema: "Laborbericht zu Asservat 1",
-                keywords: ["laborbericht zu asservat 1", "asservat 1", "ass1", "kleidung finanzberaterin",],
+                keywords: ["laborbericht zu asservat 1", "asservat 1", "ass1", "kleidung finanzberaterin", "kostuem", "kostüm", "kostüm untersuchen", "abendkostüm", "blutspritzer kleidung", "kleidung"],
                 inhalt: `
                     <div class="system-response">
                         <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: ANALYSEBERICHT ASS_01 (KLEIDUNG) &lt;&lt;</div>
@@ -435,7 +431,7 @@
             },
             {
                 thema: "Laborbericht zu Asservat 3",
-                keywords: ["laborbericht zu asservat 3", "asservat 3", "ass3", "toxikologie leiche", "blutuntersuchung opfer", "leiche dr. becker", "herzinfarkt todesursache", "leichenfund", "leiche", "leichnam", "tot", "toxikologie", "gutachten leiche", "blut dr. becker"],
+                keywords: ["laborbericht zu asservat 3", "asservat 3", "ass3", "toxikologie leiche", "blutuntersuchung opfer", "leiche dr. becker", "herzinfarkt todesursache", "leichenfund", "leiche", "leichnam", "tot", "toxikologie", "gutachten leiche"],
                 inhalt: `
                     <div class="system-response">
                         <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: TOXIKOLOGISCHES GUTACHTEN ASS_03 &lt;&lt;</div>
@@ -687,7 +683,7 @@
             },
             {
                 thema: "Mechanische Prüfung GEG_01",
-                keywords: ["untersuchung taschenuhrgeg_01", "taschenuhr analysieren", "uhrwerk prüfen", "geg_01", "taschenuhr beschädigung", "uhrzeit 20:12", "kaputte uhr", "taschenuhr", "uhr", "uhrzeit","geg-1"],
+                keywords: ["untersuchung taschenuhrgeg_01", "taschenuhr analysieren", "uhrwerk prüfen", "geg_01", "taschenuhr beschädigung", "uhrzeit 20:12", "kaputte uhr", "taschenuhr", "uhr", "uhrzeit"],
                 inhalt: `
                     <div class="system-response">
                         <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: MECHANISCHE PRÜFUNG GEG_01 &lt;&lt;</div>
@@ -775,53 +771,14 @@
                 `
             },
             {
-                thema: "Asservat 8",
-                keywords: ["asservat 8", "kleidung tochter"],
-                inhalt: `
-                    <div class="system-response">
-                        <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: ASSERVAT 7 &lt;&lt;</div>
-                        <div class="response-section">
-                            <span class="response-label">Laborbefund:</span>
-                            <span class="response-value">Die Kleidung der Tochter enthelt spuren der Beraterin.</span>
-                        </div>
-                    </div>
-                `
-            },
-            {
                 thema: "Labormedizinische Blutuntersuchung 1",
-                keywords: ["blutuntersuchung 1", "alkohol schlafmittel blut", " blut sohn", "blutuntersuchung sohn", "blutalkohol"],
+                keywords: ["blutuntersuchung 1", "alkohol schlafmittel blut", "blutalkohol"],
                 inhalt: `
                     <div class="system-response">
                         <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: LABORMEDIZINISCHE BLUTUNTERSUCHUNG 1 &lt;&lt;</div>
                         <div class="response-section">
                             <span class="response-label">Ergebnis:</span>
-                            <span class="response-value">Im Blut des Sohnes lassen sich große Mengen eines Schlafmittels und Alkohol nachweisen.</span>
-                        </div>
-                    </div>
-                `
-            },
-            {
-                thema: "Labormedizinische Blutuntersuchung 2",
-                keywords: ["blutuntersuchung 2", "Gras", "blut tochter", "blutuntersuchung tochter"],
-                inhalt: `
-                    <div class="system-response">
-                        <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: LABORMEDIZINISCHE BLUTUNTERSUCHUNG 1 &lt;&lt;</div>
-                        <div class="response-section">
-                            <span class="response-label">Ergebnis:</span>
-                            <span class="response-value">Im Blut lassen sich Gras und Alkohol nachweisen.</span>
-                        </div>
-                    </div>
-                `
-            },
-            {
-                thema: "Labormedizinische Blutuntersuchung 3",
-                keywords: ["blutuntersuchung 3", "alkohol blut", " blut betaterin", "blutuntersuchung betaterin", "blutalkohol"],
-                inhalt: `
-                    <div class="system-response">
-                        <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: LABORMEDIZINISCHE BLUTUNTERSUCHUNG 1 &lt;&lt;</div>
-                        <div class="response-section">
-                            <span class="response-label">Ergebnis:</span>
-                            <span class="response-value">Im Blut lassen sich kleine Mengen Alkohol nachweisen.</span>
+                            <span class="response-value">Im Blut lassen sich große Mengen eines Schlafmittels und Alkohol nachweisen.</span>
                         </div>
                     </div>
                 `
@@ -834,14 +791,14 @@
                         <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: VIDEO-ANALYSE KAMERA 1 &lt;&lt;</div>
                         <div class="response-section">
                             <span class="response-label">Auswertung:</span>
-                            <span class="response-value">Ein Abruf der Serverdaten shows: Die Kamera filmte die Hauptstraße und die Einfahrt, nicht aber den hinteren Gartenbereich. Die Log-Daten bestätigen, dass der Wagen der Beraterin den Parkplatz während der kritischen Tatzeit nicht verlassen hat.</span>
+                            <span class="response-value">Ein Abruf der Serverdaten zeigt: Die Kamera filmte die Hauptstraße und die Einfahrt, nicht aber den hinteren Gartenbereich. Die Log-Daten bestätigen, dass der Wagen der Beraterin den Parkplatz während der kritischen Tatzeit nicht verlassen hat.</span>
                         </div>
                     </div>
                 `
             },
             {
                 thema: "Verbindungsdaten Telefon 1",
-                keywords: ["telefon 1", "verbindungsdaten anruf", "protokoll telefonat", "telefon sohn", "anruf sohn"],
+                keywords: ["telefon 1", "verbindungsdaten anruf", "protokoll telefonat", "telefon", "anruf"],
                 inhalt: `
                     <div class="system-response">
                         <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: VERBINDUNGSDATEN TELEFON 1 &lt;&lt;</div>
@@ -877,6 +834,81 @@
                         </div>
                     </div>
                 `
+            },
+            {
+                thema: "Fingerabdruck Analyse 1",
+                keywords: ["fingerabdruck_analyse_1", "fingerabdruck analyse 1", "sohn", "fingerabdruck sohn", "abdruecke sohn", "abdrücke sohn"],
+                inhalt: `
+                    <div class="system-response">
+                        <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: DAKTYLOSKOPISCHE PRÜFUNG – REGISTRIERUNG &lt;&lt;</div>
+                        <div class="evidence-split">
+                            <div class="evidence-text">
+                                <div class="response-section">
+                                    <span class="response-label">Gegenstand / Zuordnung:</span>
+                                    <span class="response-value">Fingerabdrücke Sohn (Vergleichsprofil)</span>
+                                </div>
+                                <div class="response-section">
+                                    <span class="response-label">Status:</span>
+                                    <span class="response-value">Profil erfolgreich aus Archivdaten geladen. Visualisierung bereitgestellt.</span>
+                                </div>
+                            </div>
+                            <div class="evidence-image-box">
+                                <span class="response-label">Labor-Scan (Paar 1)</span>
+                                <img src="Bild/PAAR1.jpg" alt="Fingerabdrücke Sohn">
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                thema: "Fingerabdruck Analyse 2",
+                keywords: ["fingerabdruck_analyse_2", "fingerabdruck analyse 2", "tochter", "fingerabdruck totechter", "abdruecke tochter", "abdrücke tochter"],
+                inhalt: `
+                    <div class="system-response">
+                        <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: DAKTYLOSKOPISCHE PRÜFUNG – REGISTRIERUNG &lt;&lt;</div>
+                        <div class="evidence-split">
+                            <div class="evidence-text">
+                                <div class="response-section">
+                                    <span class="response-label">Gegenstand / Zuordnung:</span>
+                                    <span class="response-value">Fingerabdrücke Tochter (Vergleichsprofil)</span>
+                                </div>
+                                <div class="response-section">
+                                    <span class="response-label">Status:</span>
+                                    <span class="response-value">Profil erfolgreich aus Archivdaten geladen. Visualisierung bereitgestellt.</span>
+                                </div>
+                            </div>
+                            <div class="evidence-image-box">
+                                <span class="response-label">Labor-Scan (Paar 2)</span>
+                                <img src="Bild/PAAR2.jpg" alt="Fingerabdrücke Tochter">
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                thema: "Fingerabdruck Analyse 3",
+                keywords: ["fingerabdruck_analyse_3", "fingerabdruck analyse 3", "beraterin", "finanzberaterin", "fingerabdruck beraterin", "abdruecke beraterin", "abdrücke beraterin"],
+                inhalt: `
+                    <div class="system-response">
+                        <div class="response-header">&gt;&gt; SYSTEM-AUSGABE: DAKTYLOSKOPISCHE PRÜFUNG – REGISTRIERUNG &lt;&lt;</div>
+                        <div class="evidence-split">
+                            <div class="evidence-text">
+                                <div class="response-section">
+                                    <span class="response-label">Gegenstand / Zuordnung:</span>
+                                    <span class="response-value">Fingerabdruck Beraterin (Vergleichsprofil)</span>
+                                </div>
+                                <div class="response-section">
+                                    <span class="response-label">Status:</span>
+                                    <span class="response-value">Profil erfolgreich aus Archivdaten geladen. Visualisierung bereitgestellt.</span>
+                                </div>
+                            </div>
+                            <div class="evidence-image-box">
+                                <span class="response-label">Labor-Scan (Paar 3)</span>
+                                <img src="Bild/PAAR3.jpg" alt="Fingerabdruck Beraterin">
+                            </div>
+                        </div>
+                    </div>
+                `
             }
         ];
 
@@ -905,7 +937,6 @@
             if (e.key === 'Enter') tryLogin();
         });
 
-        // Bereinigt die Eingaben radikal, damit Tippfehler und Umlaute egal sind
         function normalizeText(text) {
             return text.toLowerCase()
                        .replace(/ä/g, "ae")
@@ -929,18 +960,15 @@
             setTimeout(() => {
                 let gefundenerBericht = null;
 
-                // Durchsuche alle Berichte im Array
                 for (const eintrag of forensicDatabase) {
-                    // Schaut nach, ob die bereinigte Eingabe EXAKT einem der definierten Keywords entspricht
                     const hatExaktenTreffer = eintrag.keywords.map(k => normalizeText(k)).includes(normalizedQuery);
                     
                     if (hatExaktenTreffer) {
                         gefundenerBericht = eintrag;
-                        break; // Sofort stoppen bei klarem Treffer!
+                        break;
                     }
                 }
 
-                // Falls kein exakter Match da war, machen wir eine weichere Wort-Teilsuche
                 if (!gefundenerBericht) {
                     for (const eintrag of forensicDatabase) {
                         const keywordMatch = eintrag.keywords.some(k => {
@@ -955,7 +983,6 @@
                     }
                 }
 
-                // Ergebnisausgabe
                 if (gefundenerBericht) {
                     outputPanel.innerHTML = gefundenerBericht.inhalt;
                 } else {
@@ -964,7 +991,7 @@
                             <div class="response-header" style="color: #9b2c2c; border-color: #9b2c2c;">[SYS-ERR: KEIN AKTENFUND]</div>
                             <p>Die Suchabfrage nach „<strong>${originalQuery}</strong>“ verlief im aktuellen Systemregister negativ.</p>
                             <p style="margin-top: 10px; font-size: 12px; color: #718096;">
-                                Systemhinweis: Nutzen Sie einfach prägnante Schlagworte des Falls.
+                                Systemhinweis: Nutzen Sie einfach prägnante Schlagworte des Falls (z.B. „Leiche“, „Uhr“, „Notiz“, „Kapsel“, „Kleidung“ oder „Asservat“).
                             </p>
                         </div>
                     `;
